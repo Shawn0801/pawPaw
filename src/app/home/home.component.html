@@ -1,12 +1,42 @@
 <app-header></app-header>
-<main class="main">
-  <div class="bn">
-    <img src="https://www.monstergo.com.tw/ridea/npm/images/frontend/index_ban.png" alt="" class="">
-    <img src="https://www.monstergo.com.tw/ridea/npm/images/frontend/indexban_bottom.png" alt=""
-      class="absolute -bottom-1/4 z-10 w-full h-3/4">
+<main class="main mt-20 w-full mb-4">
+  <!-- <div class="bn">
+    <img src="https://www.monstergo.com.tw/ridea/npm/images/frontend/index_ban.png" alt="" class="bn1">
+    <img src="https://www.monstergo.com.tw/ridea/npm/images/frontend/indexban_bottom.png" class="" alt="bn2"
+      class="absolute -bottom-1/2 z-10 w-full h-3/4 bn2">
+
+  </div> -->
+  <!-- <button (click)="goToGame()" class="btn bg-black">13313</button> -->
+  <!-- <img [src]="k" alt="" class="w-1/4"> -->
+  <div class="flex justify-center flex-row mt-6">
+    <div>
+      <h2 class="text-2xl text-amber-900 font-bold">｜ 寵物協尋列表</h2>
+    </div>
   </div>
-  <button (click)="goToGame()">1</button>
-  <img [src]="k" alt="" class="w-1/4">
+  <div class="flex justify-center mt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <ng-container *ngFor="let item of data">
+        <div class="flex flex-col items-center p-4 border rounded-lg shadow-md hover:bg-slate-200">
+          <ul class="list-none text-center">
+            <li class="text-lg font-bold" *ngIf="item['寵物名']; else noName">{{ item['寵物名'] }}</li>
+            <ng-template #noName>
+              <li class="text-lg font-bold">寵物名未填寫</li>
+            </ng-template>
+            <li>
+              <div class="w-48 h-48 overflow-hidden">
+                <!-- overflow-hidden 確保超出容器的圖片部分被裁剪 -->
+                <img [src]="item.PICTURE" (error)="item.PICTURE = 'assets/img/noimg.jpg'" alt="pet image"
+                  class="w-full h-full object-cover rounded-md">
+              </div>
+            </li>
+          </ul>
+          <button class="bg-amber-700 rounded-full mt-4 hover:bg-amber-50" (click)="goDetil()">
+            <div class="text-white px-3 py-2 hover:text-neutral-950">查看詳細資訊</div>
+          </button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </main>
 
 <app-footer></app-footer>
